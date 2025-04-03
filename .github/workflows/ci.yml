@@ -45,3 +45,11 @@ jobs:
               with:
                 name: build
                 path: dist  # Corrected 'patch' to 'path'
+
+            - name: "Setup Vercel CLI"
+              run: npm install -g vercel  # Install the Vercel CLI
+
+            - name: "Deploy to Vercel"
+              run: vercel --prod --token=${{ secrets.VERCEL_TOKEN }} --confirm --name=cicdproject
+              # The --prod flag makes it deploy to production. Replace 'cicdproject' with your project name.
+
