@@ -19,7 +19,7 @@ jobs:
                     node-version: '21'
             
             - name: "setup vercel cli"
-              run: npm install -g versal
+              run: npm install -g versel
 
             - name: "download build files"
               uses: actions/download-artifact@v4
