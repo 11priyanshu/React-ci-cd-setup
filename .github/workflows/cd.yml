@@ -19,15 +19,14 @@ jobs:
                     node-version: '21'
             
             - name: "setup vercel cli"
-              run: npm install -g versel
+              run: npm install -g vercel  # corrected from versal to vercel
 
             - name: "download build files"
               uses: actions/download-artifact@v4
               with:
                 name: build
-                run-id: ${{ github.event.workflows_run.id }}
+                run-id: ${{ github.event.workflow_run.id }}  # fixed variable name
                 github-token: ${{ github.token }}
 
-            - name: "Deploy to versel"
-              run: versal --prod --token=${{ secrets.VERCEL_TOKEN }} --confirm --name=cicdproject
-            
+            - name: "Deploy to vercel"
+              run: vercel --prod --token=${{ secrets.VERCEL_TOKEN }} --confirm --name=cicdproject
