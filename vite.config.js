@@ -1,15 +1,10 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
-import { configDefaults } from 'vitest/config.js'
+import { defineConfig } from 'vite';
+import { viteStaticCopy } from 'vite-plugin-static-copy';
+import { test } from 'vitest';
 
-// https://vite.dev/config/
 export default defineConfig({
-  plugins: [react()],
   test: {
-    globals: true,
-    enviroment: 'jsdom',
-    setupfiles: './src/setupTests.js',
-    exclude: [...configDefaults.exclude, 'e2e/*'],
-    
-  }
-})
+    globals: true,  // Vitest globals like `test` and `expect`
+    environment: 'jsdom', // Testing environment (could be jsdom or node)
+  },
+});
