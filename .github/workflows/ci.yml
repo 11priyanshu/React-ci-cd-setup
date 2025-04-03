@@ -35,14 +35,13 @@ jobs:
               run: npm run lint
 
             - name: "Run tests"
-              uses: npm test
+              run: npm test  # Changed from uses to run
 
             - name: "Run build"
-              uses: npm run build
+              run: npm run build  # Changed from uses to run
 
             - name: "Upload product-ready build files"
               uses: actions/upload-artifact@v4
               with:
                 name: build
-                patch: dist
-            
+                path: dist  # Corrected 'patch' to 'path'
