@@ -22,11 +22,17 @@ jobs:
             - name: "clone the repository"
               uses: actions/checkout@v2
 
+            - name: "List directories"
+              run: ls
+
             - name: "install dependencies"
               run: npm install
 
-            - name: "Run link0"
-              run: npm run link
+            - name: "List directories"
+              run: ls
+
+            - name: "Run lint"
+              run: npm run lint
 
             - name: "Run tests"
               uses: npm test
