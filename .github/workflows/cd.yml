@@ -9,18 +9,25 @@ on:
 jobs:
     deploy:
         runs-on: ubuntu-latest
+        environment: production
 
         steps:
 
             - name: "setup nodejs"
-                uses: action/setup-node@v4
-                with:
+              uses: action/setup-node@v4
+              with:
                     node-version: '21'
             
             - name: "setup vercel cli"
               run: npm install -g versal
 
-            -name: "download build files"
-             uses: actions/download-artifact@v4
-             with:
+            - name: "download build files"
+              uses: actions/download-artifact@v4
+              with:
                 name: build
+                run-id: ${{ github.event.workflows_run.id }}
+                github-token: ${{ github.token }}
+
+            - name: "Deploy to versel"
+              run: versal --prod --token=${{ secrets.VERCEL_TOKEN }} --confirm --name=cicdproject
+            
