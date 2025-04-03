@@ -25,5 +25,18 @@ jobs:
             - name: "install dependencies"
               run: npm install
 
-            - name: "list directories"
-              run: ls
+            - name: "Run link0"
+              run: npm run link
+
+            - name: "Run tests"
+              uses: npm test
+
+            - name: "Run build"
+              uses: npm run build
+
+            - name: "Upload product-ready build files"
+              uses: actions/upload-artifact@v4
+              with:
+                name: build
+                uses: dist
+            
