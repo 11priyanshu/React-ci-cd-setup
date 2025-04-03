@@ -1,0 +1,26 @@
+name: "CD pipeline"
+
+on:
+    workflow_run:
+        workflows: ["sample react ci pipeline / workflows"]
+        types:
+            - completed
+
+jobs:
+    deploy:
+        runs-on: ubuntu-latest
+
+        steps:
+
+            - name: "setup nodejs"
+                uses: action/setup-node@v4
+                with:
+                    node-version: '21'
+            
+            - name: "setup vercel cli"
+              run: npm install -g versal
+
+            -name: "download build files"
+             uses: actions/download-artifact@v4
+             with:
+                name: build
